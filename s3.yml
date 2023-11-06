@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  Prefix:
+    Type: String
+    Default: "dev"
+  ResourceName:
+    Type: String
+    Default: "test"
+
+Resources:
+  # ------------------------------ #
+  # S3bucket
+  # ------------------------------ #
+  S3bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      # BucketName: !Sub "${Prefix}-${ResourceName}-bucket"
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
